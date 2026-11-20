@@ -384,35 +384,113 @@ strong {
     color: #766e6a;
 }
 
+
+/* ===== PREMIUM PHOTO GALLERY ===== */
+
 .gallery {
     display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    grid-template-rows: repeat(3,230px);
-    gap: 17px;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-rows: repeat(2, 260px);
+    gap: 18px;
+
+    max-width: 1200px;
+    margin: 40px auto;
 }
 
-.gallery img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border: 7px solid white;
-    box-shadow: 0 10px 30px #3320181a;
-    transition: transform .45s,filter .45s;
-    filter: saturate(.92);
+/* Gallery Card */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+
+    border: 7px solid #ffffff;
+    border-radius: 16px;
+
+    background: #f5ede5;
+
+    box-shadow: 0 12px 30px rgba(51, 32, 24, 0.12);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
-.gallery img:hover {
-    transform: scale(1.025);
-    filter: saturate(1.1);
-}
-
-.gallery img:nth-child(1) {
+/* First Image - Large Portrait */
+.gallery-main {
     grid-row: span 2;
 }
 
-.gallery img:nth-child(4) {
-    grid-column: span 2;
+/* Gallery Images */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+    object-position: center;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.6s ease,
+        filter 0.4s ease;
+
+    filter: saturate(0.95);
+}
+
+/* Hover Effect */
+.gallery-item:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 18px 40px rgba(51, 32, 24, 0.20);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06);
+    filter: saturate(1.1);
+}
+
+/* Keyboard Accessibility */
+.gallery-item img:focus-visible {
+    outline: 3px solid #b68a55;
+    outline-offset: -4px;
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width: 900px) {
+
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, 240px);
+        gap: 14px;
+    }
+
+    .gallery-main {
+        grid-row: span 2;
+    }
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, 180px);
+
+        gap: 10px;
+        margin: 25px auto;
+        padding: 0 8px;
+    }
+
+    .gallery-main {
+        grid-row: span 2;
+    }
+
+    .gallery-item {
+        border-width: 4px;
+        border-radius: 10px;
+    }
 }
 
 .contact-grid {
